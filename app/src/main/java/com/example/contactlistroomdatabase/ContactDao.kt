@@ -1,5 +1,7 @@
 package com.example.contactlistroomdatabase
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
@@ -17,7 +19,7 @@ interface ContactDao {
     suspend fun deleteContact(contact: Contact)
 
     @Query(" SELECT * FROM  contact ORDER BY firstName ASC ")
-    fun getContactsOrderByFirstName():Flow<List<Contact>>
+    fun getContactsOrderByFirstName(): LiveData<List<Contact>>
 
     @Query(" SELECT * FROM  contact ORDER BY lastName ASC ")
     fun getContactsOrderByLastName():Flow<List<Contact>>

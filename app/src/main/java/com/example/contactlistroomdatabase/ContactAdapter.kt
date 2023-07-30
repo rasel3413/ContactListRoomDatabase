@@ -26,17 +26,14 @@ class ContactAdapter(private  val contact:List<Contact>,val context: Context):Re
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem=contact[position]
 
-        holder.txt1.text=currentItem.firstName
-        holder.txt2.text=currentItem.lastName
+        holder.txt1.text= "${currentItem.firstName} ${currentItem.lastName}"
         holder.txt3.text=currentItem.phoneNumber
 
 
     }
     class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
 
-
         val txt1: TextView =itemView.findViewById(R.id.tvFirstName)
-        val txt2: TextView =itemView.findViewById(R.id.tvLastName)
         val txt3: TextView =itemView.findViewById(R.id.tvPhoneNumber)
     }
 

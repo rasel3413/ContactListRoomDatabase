@@ -12,6 +12,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,17 +35,15 @@ class MainActivity : AppCompatActivity() {
         ).build()
 
         var contat= mutableListOf<Contact>()
+        val x:LiveData<List<Contact>> = database.dao.getContactsOrderByFirstName()
+        x.observe(this, Observer { contacts ->
+            contat.clear()
+            contat.addAll(contacts)
+            val recylce=findViewById<RecyclerView>(R.id.recycler)
+            recylce.layoutManager=LinearLayoutManager(this@MainActivity)
+            recylce.adapter=ContactAdapter(contat,this@MainActivity)
+        })
 
-        lifecycleScope.launch{
-            database.dao.getContactsOrderByFirstName().collect(){contact->
-              contat.clear()
-                contat.addAll(contact)
-                val recylce=findViewById<RecyclerView>(R.id.recycler)
-                recylce.layoutManager=LinearLayoutManager(this@MainActivity)
-                recylce.adapter=ContactAdapter(contat,this@MainActivity)
-
-            }
-        }
 
 
 
