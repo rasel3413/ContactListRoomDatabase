@@ -1,0 +1,8 @@
+<!-- styles.xml -->
+<resources>
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <!-- Use your custom exit animation here -->
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
+    </style>
+</resources>
