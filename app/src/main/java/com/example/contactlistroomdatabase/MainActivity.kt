@@ -11,38 +11,40 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
-import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.LifecycleObserver
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
+   private var contat= mutableListOf<Contact>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-       val database:ContactDatabase = Room.databaseBuilder(
+        val database:ContactDatabase = Room.databaseBuilder(
             applicationContext,ContactDatabase::class.java,
             "contactDB"
 
         ).build()
 
-        var contat= mutableListOf<Contact>()
+
         val x:LiveData<List<Contact>> = database.dao.getContactsOrderByFirstName()
+
         x.observe(this, Observer { contacts ->
             contat.clear()
+
             contat.addAll(contacts)
             val recylce=findViewById<RecyclerView>(R.id.recycler)
             recylce.layoutManager=LinearLayoutManager(this@MainActivity)
-            recylce.adapter=ContactAdapter(contat,this@MainActivity)
+            recylce.adapter=ContactAdapter(contat,this@MainActivity,database)
         })
+
 
 
 
@@ -68,13 +70,20 @@ class MainActivity : AppCompatActivity() {
             val firstName=dialog.findViewById<EditText>(R.id.edFirst)
             val lastName=dialog.findViewById<EditText>(R.id.edSecond)
             val phoneNumber=dialog.findViewById<EditText>(R.id.edPhoneNumber)
+            val home=dialog.findViewById<EditText>(R.id.edHome)
+            val dept=dialog.findViewById<EditText>(R.id.edDept)
+            val blood=dialog.findViewById<Spinner>(R.id.bloodSpinner)
 
             btnAdd.setOnClickListener {
                 val first:String=firstName.text.toString()
                 val second:String=lastName.text.toString()
                 val phone:String=phoneNumber.text.toString()
+                val dept:String=dept.text.toString()
+                val home=home.text.toString()
+                val blood:String=blood.selectedItem.toString()
+                
                 GlobalScope.launch {
-                    database.dao.insertContact(Contact(first,second,phone))
+                    database.dao.insertContact(Contact(first,second,phone,dept,home,blood))
                 }
                 firstName.text.clear();
                 lastName.text.clear()
@@ -87,4 +96,8 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+
+
+
 }

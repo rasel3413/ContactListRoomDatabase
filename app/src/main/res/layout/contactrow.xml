@@ -15,16 +15,59 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
         <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
-            tools:text="Shahin Bashar"
+            tools:text="Name: Shahin Bashar"
+            android:textAlignment="center"
             android:id="@+id/tvFirstName"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:textAlignment="center"
+            tools:text="Phone No: 01613162522"
+            android:layout_height="wrap_content"
+            android:autoLink="phone"
+        
+
+            android:id="@+id/tvPhoneNumber"/>
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_marginTop="5dp"
-            tools:text="01613162522"
+            android:textAlignment="inherit"
+            tools:text="Department: CSE"
             android:layout_height="wrap_content"
-            android:id="@+id/tvPhoneNumber"/>
+
+
+            android:id="@+id/tvDepartment"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="5dp"
+            tools:text="Home District: Khulna"
+            android:layout_height="wrap_content"
+
+
+            android:id="@+id/tvHomeDistrict"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="5dp"
+            tools:text="Blood Group: B+"
+            android:layout_height="wrap_content"
+
+
+            android:id="@+id/tvBloodGroup"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/DeleteContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@color/white"
+            android:src="@drawable/baseline_delete_24"
+
+            android:backgroundTint="@color/white"
+            />
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.cardview.widget.CardView>

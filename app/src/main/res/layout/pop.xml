@@ -41,34 +41,50 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:hint="Enter the First Name"
-           android:textColor="@color/white"
-           android:textColorHint="#7E6E6E"
+
            android:inputType="text"
            />
 
              <EditText
            android:id="@+id/edSecond"
-                 android:textColor="@color/white"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:hint="Enter the Second Name"
            android:inputType="text"
-           android:textColorHint="#7E6E6E"
+
                  />
 
        <EditText
            android:id="@+id/edPhoneNumber"
-           android:textColor="@color/white"
+
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:hint="Enter the Phone Number"
            android:inputType="number"
-           android:textColorHint="#7E6E6E"
+
            />
 
+
+       <EditText
+           android:id="@+id/edDept"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="Enter Your Department Name"
+           android:inputType="text"
+
+           />
+       <EditText
+           android:id="@+id/edHome"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="Enter Your Home District"
+           android:inputType="text"
+
+           />
        <androidx.appcompat.widget.AppCompatSpinner
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
+
            android:id="@+id/bloodSpinner"
            android:entries="@array/blood_group"
            />
